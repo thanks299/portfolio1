@@ -115,14 +115,6 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} Portfolio. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0">
-            <button 
-              onClick={scrollToTop}
-              className="flex items-center text-sm text-primary-600 hover:text-primary-700 dark:hover:text-primary-500 transition-colors duration-300"
-              aria-label="Back to top"
-            >
-              Back to top
-              <ArrowUp className="ml-1 w-4 h-4" />
-            </button>
           </div>
         </div>
       </div>

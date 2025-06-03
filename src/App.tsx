@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import BackToTopButton from './components/layout/BackToTopButton';
 
 // Layout components
 import Navbar from './components/layout/Navbar';
@@ -76,6 +77,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
+          <BackToTopButton />
           <Footer />
         </div>
       </Router>

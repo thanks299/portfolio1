@@ -25,6 +25,28 @@ const HeroSection: React.FC = () => {
     }),
   };
 
+  // Pop animation for letters
+  const letterVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.3, transition: { duration: 0.2 } },
+  };
+
+  const renderAnimatedText = (text: string, className: string) => (
+    <motion.span className={className}>
+      {text.split('').map((letter, index) => (
+        <motion.span
+          key={index}
+          variants={letterVariants}
+          initial="initial"
+          whileHover="hover"
+          className="inline-block"
+        >
+          {letter}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-br from-white to-gray-100 dark:from-dark-800 dark:to-dark-900 transition-colors duration-300">
       {/* Background circles */}
@@ -37,16 +59,11 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-3/5 mb-12 lg:mb-0">
             <div className="flex flex-col">
-              <motion.span
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                variants={textVariants}
-                className="text-lg md:text-xl font-medium text-primary-600 mb-4"
-              >
-                Hello, I'm
-              </motion.span>
-              
+                <h2 className="mb-4">
+                <span>{renderAnimatedText("H e l l o ( );", "text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
+                <span className="mx-1"></span>
+                <span>{renderAnimatedText("I ' m", "text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
+                </h2>
               <motion.h1
                 custom={1}
                 initial="hidden"
@@ -54,11 +71,15 @@ const HeroSection: React.FC = () => {
                 variants={textVariants}
                 className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
               >
-                Agbeble Thanks
-                <span className="block text-primary-600">Full Stack Developer</span>
+                {renderAnimatedText("Agbeble Thanks.", "")}
+                <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex">
+                  <span>{renderAnimatedText("Full-stack", "text-primary-600 text-xl md:text-2xl lg:text-3xl")}</span>
+                  <span className="mx-1"></span> {/* Adding an explicit space */}
+                  <span>{renderAnimatedText("Developer", "text-primary-600 text-xl md:text-2xl lg:text-3xl")}</span>
+                </h1>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 custom={2}
                 initial="hidden"
                 animate="visible"
@@ -67,7 +88,7 @@ const HeroSection: React.FC = () => {
               >
                 I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
               </motion.p>
-              
+
               <motion.div
                 custom={3}
                 initial="hidden"
@@ -82,7 +103,7 @@ const HeroSection: React.FC = () => {
                   Get In Touch
                 </Button>
               </motion.div>
-              
+
               <motion.div
                 custom={4}
                 initial="hidden"
@@ -90,27 +111,27 @@ const HeroSection: React.FC = () => {
                 variants={textVariants}
                 className="flex space-x-4"
               >
-                <a 
-                  href="https://github.com/thanks299" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/thanks299"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-dark-700 text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors duration-300"
                   aria-label="Github"
                 >
                   <Github size={20} />
                 </a>
-                <a 
-                  href="https://linkedin.com/in/iamthanks" 
-                  target="_blank" 
+                <a
+                  href="https://linkedin.com/in/iamthanks"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-dark-700 text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors duration-300"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={20} />
                 </a>
-                <a 
-                  href="https://x.com/heisthanks" 
-                  target="_blank" 
+                <a
+                  href="https://x.com/heisthanks"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-dark-700 text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors duration-300"
                   aria-label="Twitter"
@@ -120,24 +141,24 @@ const HeroSection: React.FC = () => {
               </motion.div>
             </div>
           </div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="lg:w-2/5 relative"
           >
             <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 overflow-hidden mx-auto">
-              <img 
-                src="/thanks1.jpg" 
-                alt="Agbeble Thanks - Full Stack Developer" 
+              <img
+                src="/thanks1.jpg"
+                alt="Agbeble Thanks - Full Stack Developer"
                 className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
               />
             </div>
           </motion.div>
         </div>
       </div>
-      
+
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
         <motion.button
           onClick={scrollToNext}
@@ -150,7 +171,7 @@ const HeroSection: React.FC = () => {
           <ArrowDown size={24} />
         </motion.button>
       </div>
-      
+
       <div ref={scrollRef} />
     </section>
   );

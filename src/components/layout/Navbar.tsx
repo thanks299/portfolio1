@@ -58,10 +58,14 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link 
           to="/" 
-          className="text-2xl font-bold relative group"
+          className="relative group flex items-center"
           aria-label="Home"
         >
-          <span className="text-primary-600">Portfolio</span>
+          <img 
+            src="/thanks1.jpg" 
+            alt="Portfolio Logo" 
+            className="h-9 w-9 rounded-full object-cover md:h-14 md:w-14"
+          />
           <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
         </Link>
 

@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-const CursorFollower: React.FC = () => {
+interface CursorFollowerProps {
+  primaryColor?: string;
+  hoverColor?: string;
+  hoverScale?: number;
+}
+
+const CursorFollower: React.FC<CursorFollowerProps> = ({
+  primaryColor = '#2563EB', // Default primary color
+  hoverColor = '#EF4444', // Default hover color
+  hoverScale = 1.5, // Default hover scale
+}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
@@ -13,10 +23,10 @@ const CursorFollower: React.FC = () => {
     const handleMouseOver = (e: MouseEvent) => {
       if (
         e.target instanceof HTMLElement &&
-        (e.target.tagName === 'A' || 
-         e.target.tagName === 'BUTTON' || 
-         e.target.closest('a') || 
-         e.target.closest('button'))
+        (e.target.tagName === 'A' ||
+          e.target.tagName === 'BUTTON' ||
+          e.target.closest('a') ||
+          e.target.closest('button'))
       ) {
         setIsHovering(true);
       } else {
@@ -40,18 +50,20 @@ const CursorFollower: React.FC = () => {
 
   return (
     <>
+      {/* Outer Circle */}
       <motion.div
-        className="hidden md:block fixed w-5 h-5 rounded-full border border-primary-600 z-50 pointer-events-none"
+        className="hidden md:block fixed w-10 h-10 rounded-full border z-50 pointer-events-none"
         style={{
           top: 0,
           left: 0,
           translateX: '-50%',
           translateY: '-50%',
+          borderColor: isHovering ? hoverColor : primaryColor,
         }}
         animate={{
           x: mousePosition.x,
           y: mousePosition.y,
-          scale: isHovering ? 1.5 : 1,
+          scale: isHovering ? hoverScale : 1,
         }}
         transition={{
           type: 'spring',
@@ -60,13 +72,15 @@ const CursorFollower: React.FC = () => {
           restDelta: 0.001,
         }}
       />
+      {/* Inner Circle */}
       <motion.div
-        className="hidden md:block fixed w-2 h-2 bg-primary-600 rounded-full z-50 pointer-events-none"
+        className="hidden md:block fixed w-4 h-4 rounded-full z-50 pointer-events-none"
         style={{
           top: 0,
           left: 0,
           translateX: '-50%',
           translateY: '-50%',
+          backgroundColor: isHovering ? hoverColor : primaryColor,
         }}
         animate={{
           x: mousePosition.x,

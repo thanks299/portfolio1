@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
 import Button from '../ui/Button';
+import { useTheme } from '../../context/ThemeContext';
 
 const HeroSection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -87,20 +88,21 @@ const HeroSection: React.FC = () => {
                 I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
               </motion.p>
 
-              <motion.div
+                <motion.div
                 custom={3}
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
-                className="flex flex-wrap gap-4 mb-8"
-              >
-                <Button to="/portfolio" size="lg">
-                  View My Work
+                className="relative flex flex-wrap gap-4 mb-8"
+                >
+                <div className="absolute inset-0 flex">
+                  <div className="w-full h-full bg-primary-100 dark:bg-primary-900/20 blur-lg opacity-60 rounded-lg"></div>
+                  <div className="w-full h-full bg-secondary-100 dark:bg-secondary-900/20 blur-lg opacity-60 rounded-lg ml-4"></div>
+                </div>
+                <Button to="/portfolio" size="lg" className="relative z-10">
+                  LET'S TALK
                 </Button>
-                <Button to="/contact" variant="outline" size="lg">
-                  Get In Touch
-                </Button>
-              </motion.div>
+                </motion.div>
 
               <motion.div
                 custom={4}

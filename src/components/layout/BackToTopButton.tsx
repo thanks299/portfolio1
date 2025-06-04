@@ -40,7 +40,7 @@ const BackToTopButton: React.FC = () => {
                     aria-label="Back to the top"
                 >
                     <span className="text-sm font-medium">
-                        ← BACK TO TOP
+                         BACK TO TOP→ 
                     </span>
                 </button>
             )}

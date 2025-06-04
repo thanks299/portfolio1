@@ -102,5 +102,76 @@ export const projects: Project[] = [
     client: 'EduConnect Institute',
     date: 'August 2023',
     featured: false,
+  },
+  {
+    id: 'movie-review-site',
+    title: 'Movie Review Site',
+    description: 'A platform for movie enthusiasts to discover, review, and discuss their favorite films.',
+    longDescription: 'This movie review site was designed to provide a community-driven platform for film lovers. Users can browse through an extensive catalog of movies, read reviews, and leave their own ratings and comments. The site features advanced search and filtering options, allowing users to find movies by genre, release year, or popularity. Interactive elements such as discussion forums and polls foster engagement among users. The responsive design ensures a seamless experience across devices, while integration with third-party APIs provides up-to-date movie information and trailers.',
+    image: '/movie-review.jpeg',
+    gallery: [
+      'https://images.pexels.com/photos/337993/pexels-photo-337993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3756942/pexels-photo-3756942.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ],
+    categories: ['Web Application', 'Entertainment'],
+    technologies: ['React', 'Node.js', 'MongoDB', 'TMDb API'],
+    client: 'Cinephile Community',
+    date: 'February 2024',
+    url: 'https://terex-movie2view.netlify.app/',
+    featured: true,
+  },
+  {
+    id: 'file-manager-api',
+    title: 'File Manager API',
+    description: 'A robust API for managing files and directories with advanced features like search, upload, and permissions.',
+    longDescription: 'The File Manager API provides a comprehensive solution for handling file operations programmatically. It includes features such as file upload, download, search, and directory management. The API supports role-based access control, ensuring secure file handling and user-specific permissions. It is designed for scalability and performance, making it suitable for integration into large-scale applications. The API also includes logging and monitoring capabilities to track file operations and ensure compliance with data management policies.',
+    image: 'https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    gallery: [
+      'https://images.pexels.com/photos/3184299/pexels-photo-3184299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3184301/pexels-photo-3184301.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ],
+    categories: ['API Development', 'Backend'],
+    technologies: ['Node.js', 'Express.js', 'AWS S3', 'MongoDB'],
+    client: 'CloudStorage Solutions',
+    date: 'May 2024',
+    featured: false,
+  },
+  {
+    id: 'quote-keeper',
+    title: 'Quote Keeper',
+    description: 'A simple and elegant application for storing, organizing, and sharing your favorite quotes.',
+    longDescription: 'Quote Keeper is designed for individuals who love collecting and sharing inspirational quotes. The application allows users to save quotes with authors, categorize them by themes, and search through their collection effortlessly. Users can also share quotes directly to social media or export them as a personalized collection. The intuitive design ensures a seamless experience, while cloud synchronization keeps your quotes accessible across devices. With advanced features like tagging, favorites, and analytics, Quote Keeper is the ultimate tool for quote enthusiasts.',
+    image: '/quote.png',
+    gallery: [
+      'https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/261949/pexels-photo-261949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/207662/pexels-photo-207662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ],
+    categories: ['Productivity', 'Personal Development'],
+    technologies: ['React', 'Firebase', 'Tailwind CSS'],
+    client: 'InspireMe Inc.',
+    date: 'April 2024',
+    url: 'https://quotekeeperjustforyou.netlify.app/',
+    featured: true,
+  },
+  {
+    id: 'todo-list-app',
+    title: 'Todo List App',
+    description: 'A simple and intuitive application for managing daily tasks and staying organized.',
+    longDescription: 'The Todo List App is designed to help users efficiently manage their tasks and boost productivity. It features task creation, categorization, and prioritization, allowing users to organize their day effectively. The app includes reminders, recurring tasks, and progress tracking to ensure users stay on top of their goals. With a clean and responsive design, the app provides a seamless experience across devices. Integration with cloud storage ensures tasks are synchronized and accessible anytime, anywhere.',
+    image: '/to-do list.png',
+    gallery: [
+      'https://images.pexels.com/photos/669610/pexels-photo-669610.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3184299/pexels-photo-3184299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+      'https://images.pexels.com/photos/3184300/pexels-photo-3184300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+    ],
+    categories: ['Productivity', 'Task Management'],
+    technologies: ['React', 'Firebase', 'Tailwind CSS'],
+    client: 'TaskMaster Solutions',
+    date: 'July 2024',
+    url: 'https://todo-list-steel-psi-58.vercel.app/',
+    featured: true,
   }
 ];

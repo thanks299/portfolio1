@@ -12,7 +12,6 @@ const HeroSection: React.FC = () => {
     }
   };
 
-  // Text animation variants
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -25,7 +24,6 @@ const HeroSection: React.FC = () => {
     }),
   };
 
-  // Pop animation for letters
   const letterVariants = {
     initial: { scale: 1 },
     hover: { scale: 1.3, transition: { duration: 0.2 } },
@@ -55,27 +53,27 @@ const HeroSection: React.FC = () => {
         <div className="absolute -bottom-[300px] -left-[300px] w-[600px] h-[600px] rounded-full bg-secondary-100 dark:bg-secondary-900/20 blur-3xl opacity-60"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-24 mt-16 relative z-10">
+      <div className="container mx-auto px-4 py-16 sm:py-24 mt-8 sm:mt-16 relative z-10">
         <div className="flex flex-col lg:flex-row items-center">
-          <div className="lg:w-3/5 mb-12 lg:mb-0">
+          <div className="lg:w-3/5 mb-12 lg:mb-0 px-4 sm:px-8">
             <div className="flex flex-col">
-                <h2 className="mb-4">
-                <span>{renderAnimatedText("H e l l o ( );", "text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
+              <h2 className="mb-4">
+                <span>{renderAnimatedText("H e l l o ( );", "text-base sm:text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
                 <span className="mx-1"></span>
-                <span>{renderAnimatedText("I ' m", "text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
-                </h2>
+                <span>{renderAnimatedText("I ' m", "text-base sm:text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
+              </h2>
               <motion.h1
                 custom={1}
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
-                className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+                className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
               >
                 {renderAnimatedText("Agbeble Thanks.", "")}
-                <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex">
-                  <span>{renderAnimatedText("Full-stack", "text-primary-600 text-xl md:text-2xl lg:text-3xl")}</span>
-                  <span className="mx-1"></span> {/* Adding an explicit space */}
-                  <span>{renderAnimatedText("Developer", "text-primary-600 text-xl md:text-2xl lg:text-3xl")}</span>
+                <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
+                  <span>{renderAnimatedText("Full-stack", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl")}</span>
+                  <span className="mx-1"></span>
+                  <span>{renderAnimatedText("Developer", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl")}</span>
                 </h1>
               </motion.h1>
 
@@ -84,7 +82,7 @@ const HeroSection: React.FC = () => {
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
-                className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+                className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
               >
                 I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
               </motion.p>
@@ -146,13 +144,13 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="lg:w-2/5 relative"
+            className="lg:w-2/5 relative px-4 sm:px-8"
           >
-            <div className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 overflow-hidden mx-auto">
+            <div className="hidden lg:block relative w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] rounded-full bg-gradient-to-br from-peach-500 to-blue-500 overflow-hidden mx-auto group">
               <img
                 src="/thanks1.jpg"
                 alt="Agbeble Thanks - Full Stack Developer"
-                className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-300 group-hover:mix-blend-normal"
               />
             </div>
           </motion.div>

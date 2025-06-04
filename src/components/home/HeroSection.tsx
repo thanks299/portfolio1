@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Twitter, Settings, Sun, Moon } from 'lucide-react';
 import Button from '../ui/Button';
 import { useTheme } from '../../context/ThemeContext';
 
 const HeroSection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { theme, toggleTheme } = useTheme();
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const scrollToNext = () => {
     if (scrollRef.current) {
@@ -88,34 +90,64 @@ const HeroSection: React.FC = () => {
                 I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
               </motion.p>
 
-                <motion.div
+              <motion.div
                 custom={3}
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
-                className="relative flex flex-wrap gap-4 mb-8"
-                >
-                <div className="absolute inset-0 flex">
-                  <div className="w-full h-full bg-primary-100 dark:bg-primary-900/20 blur-lg opacity-60 rounded-lg"></div>
-                  <div className="w-full h-full bg-secondary-100 dark:bg-secondary-900/20 blur-lg opacity-60 rounded-lg ml-4"></div>
-                </div>
+                className="relative flex flex-wrap gap-4 items-center"
+              >
                 <Button to="/portfolio" size="lg" className="relative z-10">
                   LET'S TALK
                 </Button>
-                </motion.div>
 
-              <motion.div
+                {/* Settings Icon */}
+                <div className="relative">
+                  <button
+                    onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                    className="p-2 rounded-full bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
+                    aria-label="Settings"
+                  >
+                    <Settings className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  </button>
+
+                  {/* Dark Mode Toggle */}
+                  {isSettingsOpen && (
+                    <div className="absolute top-full mt-2 bg-white dark:bg-dark-800 rounded-lg shadow-lg p-4">
+                      <button
+                        onClick={toggleTheme}
+                        className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors duration-300"
+                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                      >
+                        {theme === 'dark' ? (
+                          <>
+                            <Sun className="w-5 h-5 text-yellow-400" />
+                            <span className="text-gray-700 dark:text-gray-300">Light Mode</span>
+                          </>
+                        ) : (
+                          <>
+                            <Moon className="w-5 h-5 text-primary-600" />
+                            <span className="text-gray-700 dark:text-gray-300">Dark Mode</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+
+                <motion.div
                 custom={4}
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
-                className="flex space-x-4"
-              >
+                className="flex space-x-4 mt-4" // Added margin-top to adjust position
+                >
                 <a
                   href="https://github.com/thanks299"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-dark-700 text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors duration-300"
+                  className="w-11 h-11 rounded-full flex items-center justify-center bg-gray-200 dark:bg-dark-700 text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors duration-300"
                   aria-label="Github"
                 >
                   <Github size={20} />
@@ -138,7 +170,7 @@ const HeroSection: React.FC = () => {
                 >
                   <Twitter size={20} />
                 </a>
-              </motion.div>
+                </motion.div>
             </div>
           </div>
 

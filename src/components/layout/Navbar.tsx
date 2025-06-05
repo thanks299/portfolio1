@@ -49,11 +49,11 @@ const Navbar: React.FC = () => {
 
   return (
     <header 
-      className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-50 rounded-lg shadow-lg transition-all duration-300 w-[75%] ${
-      isScrolled ? 'bg-white/70 dark:bg-dark-800/70 backdrop-blur-lg border border-gray-300 dark:border-dark-700' : 'bg-transparent'
+      className={`fixed top-2 left-1/2 transform -translate-x-1/2 z-50 rounded-lg shadow-lg transition-all duration-300 w-[85%] ${
+      isScrolled ? 'bg-white/80 dark:bg-dark-800/80 backdrop-blur-lg border border-gray-300 dark:border-dark-700' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-3 py-1 md:py-2 flex justify-between items-center rounded-lg"> {/* Reduced padding */}
+      <div className="container mx-auto px-4 py-2 md:py-3 flex justify-between items-center rounded-lg"> {/* Increased padding */}
       {/* Logo */}
       <Link 
       to="/" 
@@ -63,25 +63,26 @@ const Navbar: React.FC = () => {
       <img 
       src="/thanks1.jpg" 
       alt="Portfolio Logo" 
-      className="h-10 w-10 rounded-full object-cover md:h-14 md:w-14" // Reduced size
+      className="h-12 w-12 rounded-full object-cover md:h-16 md:w-16" // Increased size
       />
-      <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
       </Link>
 
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center space-x-6"> {/* Increased space between links */}
+      <nav className="hidden md:flex items-center space-x-8"> {/* Increased space between links */}
       {navLinks.map((link) => (
       <Link
       key={link.path}
       to={link.path}
-      className={`text-lg font-medium relative group ${
+      className={`text-xl font-medium relative group ${
       location.pathname === link.path ? 'text-primary-600' : 'text-gray-700 dark:text-gray-300'
       }`} // Increased font size
       >
       {link.label}
       <span 
-      className={`absolute -bottom-1 left-0 h-[2px] bg-primary-600 transition-all duration-300 ${
-      location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'
+      className={`absolute left-full ml-2 w-2 h-2 rounded-full transition-opacity ${
+      location.pathname === link.path || 'group-hover:opacity-100'
+      } ${
+      location.pathname === link.path ? 'bg-primary-600 opacity-100' : 'bg-primary-600 opacity-0'
       }`}
       ></span>
       </Link>
@@ -92,13 +93,13 @@ const Navbar: React.FC = () => {
       <div className="flex items-center md:hidden">
       <button
       onClick={() => setIsMenuOpen(!isMenuOpen)}
-      className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors duration-300"
+      className="p-3 rounded-md hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors duration-300"
       aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
       >
       {isMenuOpen ? (
-      <X className="w-6 h-6 text-primary-600" /> // Increased icon size
+      <X className="w-7 h-7 text-primary-600" /> // Increased icon size
       ) : (
-      <Menu className="w-6 h-6 text-primary-600" /> // Increased icon size
+      <Menu className="w-7 h-7 text-primary-600" /> // Increased icon size
       )}
       </button>
       </div>
@@ -112,9 +113,9 @@ const Navbar: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.3 }}
-      className="absolute top-full left-0 right-0 bg-white/70 dark:bg-dark-800/70 backdrop-blur-lg rounded-lg shadow-lg z-40 md:hidden"
+      className="absolute top-full left-0 right-0 bg-white/80 dark:bg-dark-800/80 backdrop-blur-lg rounded-lg shadow-lg z-40 md:hidden"
       >
-      <div className="container mx-auto px-3 py-4 flex flex-col items-center">
+      <div className="container mx-auto px-4 py-5 flex flex-col items-center">
       {navLinks.map((link, index) => (
       <motion.div
       key={link.path}
@@ -122,15 +123,22 @@ const Navbar: React.FC = () => {
       initial="hidden"
       animate="visible"
       transition={{ delay: index * 0.1 }}
-      className="w-full py-2 border-b border-gray-100 dark:border-dark-700"
+      className="w-full py-3 border-b border-gray-100 dark:border-dark-700"
       >
       <Link
       to={link.path}
-      className={`text-lg font-medium block text-center ${
+      className={`text-xl font-medium block text-center relative group ${
       location.pathname === link.path ? 'text-primary-600' : 'text-gray-700 dark:text-gray-300'
       }`} // Increased font size
       >
       {link.label}
+      <span 
+      className={`inline-block ml-2 w-2 h-2 rounded-full transition-opacity ${
+      location.pathname === link.path || 'group-hover:opacity-100'
+      } ${
+      location.pathname === link.path ? 'bg-primary-600 opacity-100' : 'bg-primary-600 opacity-0'
+      }`}
+      ></span>
       </Link>
       </motion.div>
       ))}

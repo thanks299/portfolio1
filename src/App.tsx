@@ -53,7 +53,7 @@ function App() {
             }}
             className="w-16 h-16 border-4 border-primary-600 rounded-full border-t-transparent animate-spin"
           />
-          <p className="mt-4 text-lg text-primary-600 font-medium">Loading...</p>
+          <p className="mt-4 text-lg text-primary-600 font-medium">thanks.io 🫨</p>
         </motion.div>
       </div>
     );

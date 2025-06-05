@@ -53,7 +53,7 @@ const Navbar: React.FC = () => {
       isScrolled ? 'bg-white/70 dark:bg-dark-800/70 backdrop-blur-lg border border-gray-300 dark:border-dark-700' : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-3 py-2 md:py-3 flex justify-between items-center rounded-lg">
+      <div className="container mx-auto px-3 py-1 md:py-2 flex justify-between items-center rounded-lg"> {/* Reduced padding */}
       {/* Logo */}
       <Link 
       to="/" 
@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
       <img 
       src="/thanks1.jpg" 
       alt="Portfolio Logo" 
-      className="h-12 w-12 rounded-full object-cover md:h-16 md:w-16" // Increased size
+      className="h-10 w-10 rounded-full object-cover md:h-14 md:w-14" // Reduced size
       />
       <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
       </Link>

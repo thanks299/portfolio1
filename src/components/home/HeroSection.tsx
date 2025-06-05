@@ -8,6 +8,7 @@ const HeroSection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { theme, toggleTheme } = useTheme();
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
   const scrollToNext = () => {
     if (scrollRef.current) {
@@ -90,51 +91,65 @@ const HeroSection: React.FC = () => {
                 I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
               </motion.p>
 
-              <motion.div
+                <motion.div
                 custom={3}
                 initial="hidden"
                 animate="visible"
                 variants={textVariants}
                 className="relative flex flex-wrap gap-4 items-center"
-              >
+                >
                 <Button to="/portfolio" size="lg" className="relative z-10">
                   LET'S TALK
                 </Button>
 
                 {/* Settings Icon */}
-                <div className="relative">
+                <div className="relative flex items-center">
                   <button
-                    onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-                    className="p-2 rounded-full bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
-                    aria-label="Settings"
+                  onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+                  className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
+                  aria-label="Settings"
                   >
-                    <Settings className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                  <Settings className="w-6 h-6 text-gray-700 dark:text-gray-300" />
                   </button>
 
                   {/* Dark Mode Toggle */}
                   {isSettingsOpen && (
-                    <div className="absolute top-full mt-2 bg-white dark:bg-dark-800 rounded-lg shadow-lg p-4">
-                      <button
-                        onClick={toggleTheme}
-                        className="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-dark-700 transition-colors duration-300"
-                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                      >
-                        {theme === 'dark' ? (
-                          <>
-                            <Sun className="w-5 h-5 text-yellow-400" />
-                            <span className="text-gray-700 dark:text-gray-300">Light Mode</span>
-                          </>
-                        ) : (
-                          <>
-                            <Moon className="w-5 h-5 text-primary-600" />
-                            <span className="text-gray-700 dark:text-gray-300">Dark Mode</span>
-                          </>
-                        )}
-                      </button>
+                    <div className="flex items-center space-x-2">
+                    {/* Theme Toggle */}
+                    <button
+                      onClick={toggleTheme}
+                      className="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
+                      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                    >
+                      {theme === 'dark' ? (
+                      <Sun className="w-5 h-5 text-yellow-400" />
+                      ) : (
+                      <Moon className="w-5 h-5 text-primary-600" />
+                      )}
+                    </button>
+
+                    {/* Speaker Icon */}
+                    <button
+                      onClick={() => setIsMusicPlaying(!isMusicPlaying)}
+                      className="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
+                      aria-label={isMusicPlaying ? 'Turn off music' : 'Turn on music'}
+                    >
+                      <img
+                      src={isMusicPlaying ? '/volume-up.png' : '/volume-off.png'}
+                      alt={isMusicPlaying ? 'Speaker Icon' : 'Muted Icon'}
+                      className="w-5 h-5"
+                      />
+                    </button>
                     </div>
                   )}
+                  {isMusicPlaying && (
+                    <audio autoPlay loop>
+                      <source src="/kummi arike.mp3" type="audio/mpeg" />
+                      Your browser does not support the audio element.
+                    </audio>
+                  )}
                 </div>
-              </motion.div>
+                </motion.div>
 
                 <motion.div
                 custom={4}

@@ -59,12 +59,26 @@ const HeroSection: React.FC = () => {
 
       <div className="container mx-auto px-4 py-16 sm:py-24 mt-8 sm:mt-16 relative z-10">
       <div className="flex flex-col lg:flex-row items-center">
-        <div className="lg:w-3/5 mb-12 lg:mb-0 px-4 sm:px-8">
+        <div className="lg:w-full mb-12 lg:mb-0 px-4 sm:px-8">
         <div className="flex flex-col">
           <h2 className="mb-4">
-          <span>{renderAnimatedText("H e l l o ( );", "text-base sm:text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
-          <span className="mx-1"></span>
-          <span>{renderAnimatedText("I ' m", "text-base sm:text-lg md:text-xl font-medium text-primary-600 mb-4")}</span>
+            <span>
+            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
+              <React.Fragment key={index}>
+              <span className="text-blue-600">{letter}</span>
+              <span className="mx-1"></span>
+              </React.Fragment>
+            ))}
+            </span>
+            <span className="mx-1"></span>
+            <span>
+            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
+              <React.Fragment key={index}>
+              <span className="text-blue-600">{letter}</span>
+              <span className="mx-1"></span>
+              </React.Fragment>
+            ))}
+            </span>
           </h2>
           <motion.h1
           custom={1}
@@ -73,23 +87,42 @@ const HeroSection: React.FC = () => {
           variants={textVariants}
           className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-          {renderAnimatedText("Agbeble Thanks.", "")}
-          <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
-            <span>{renderAnimatedText("Full-stack", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl")}</span>
+            {renderAnimatedText("A g b e b l e   T h a n k s .", "").props.children.map((letter, index) => (
+            <React.Fragment key={index}>
+              <span>{letter}</span>
+              <span className="mx-1"></span>
+            </React.Fragment>
+            ))}
+            <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
+            <span>
+              {renderAnimatedText("F u l l - S t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
+              <React.Fragment key={index}>
+                <span className="text-primary-600">{letter}</span>
+                <span className="mx-1"></span>
+              </React.Fragment>
+              ))}
+            </span>
             <span className="mx-1"></span>
-            <span>{renderAnimatedText("Developer", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl")}</span>
+            <span>
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
+              <React.Fragment key={index}>
+                <span className="text-primary-600">{letter}</span>
+                <span className="mx-1"></span>
+              </React.Fragment>
+              ))}
+            </span>
           </h1>
           </motion.h1>
 
-          <motion.p
-          custom={2}
-          initial="hidden"
-          animate="visible"
-          variants={textVariants}
-          className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
-          >
-          I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
-          </motion.p>
+            <motion.p
+            custom={2}
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+            >
+            I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
+            </motion.p>
 
           <motion.div
           custom={3}
@@ -106,7 +139,7 @@ const HeroSection: React.FC = () => {
           <div className="relative flex items-center">
             <motion.button
             onClick={() => {
-            setIsSettingsOpen(!isSettingsOpen);
+              setIsSettingsOpen(!isSettingsOpen);
             }}
             className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
             aria-label="Settings"
@@ -119,31 +152,31 @@ const HeroSection: React.FC = () => {
             {/* Dark Mode Toggle */}
             {isSettingsOpen && (
             <div className="flex items-center space-x-2">
-            {/* Theme Toggle */}
-            <button
+              {/* Theme Toggle */}
+              <button
               onClick={toggleTheme}
               className="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            >
+              >
               {theme === 'dark' ? (
-              <Sun className="w-5 h-5 text-yellow-400" />
+                <Sun className="w-5 h-5 text-yellow-400" />
               ) : (
-              <Moon className="w-5 h-5 text-primary-600" />
+                <Moon className="w-5 h-5 text-primary-600" />
               )}
-            </button>
+              </button>
 
-            {/* Speaker Icon */}
-            <button
+              {/* Speaker Icon */}
+              <button
               onClick={() => setIsMusicPlaying(!isMusicPlaying)}
               className="flex items-center p-2 rounded-md hover:bg-gray-200 dark:hover:bg-dark-600 transition-colors duration-300"
               aria-label={isMusicPlaying ? 'Turn off music' : 'Turn on music'}
-            >
+              >
               <img
-              src={isMusicPlaying ? '/volume-up.png' : '/volume-off.png'}
-              alt={isMusicPlaying ? 'Speaker Icon' : 'Muted Icon'}
-              className="w-5 h-5"
+                src={isMusicPlaying ? '/volume-up.png' : '/volume-off.png'}
+                alt={isMusicPlaying ? 'Speaker Icon' : 'Muted Icon'}
+                className="w-5 h-5"
               />
-            </button>
+              </button>
             </div>
             )}
             {isMusicPlaying && (
@@ -192,21 +225,6 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </div>
         </div>
-
-        <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="lg:w-2/5 relative px-4 sm:px-8"
-        >
-        <div className="hidden lg:block relative w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] rounded-full bg-gradient-to-br from-peach-500 to-blue-500 overflow-hidden mx-auto group">
-          <img
-          src="/thanks1.jpg"
-          alt="Agbeble Thanks - Full Stack Developer"
-          className="absolute inset-0 w-full h-full object-cover transition-all duration-300 group-hover:mix-blend-normal"
-          />
-        </div>
-        </motion.div>
       </div>
       </div>
 

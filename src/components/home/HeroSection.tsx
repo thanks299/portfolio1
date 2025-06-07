@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col">
           <h2 className="mb-4">
             <span>
-            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
+            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter: string, index: number) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
               <span className="mx-1"></span>
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
+            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter: string, index: number) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
               <span className="mx-1"></span>
@@ -87,7 +87,7 @@ const HeroSection: React.FC = () => {
           variants={textVariants}
           className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            {renderAnimatedText("A g b e b l e   T h a n k s .", "").props.children.map((letter, index) => (
+            {renderAnimatedText("A g b e b l e   T h a n k s .", "").props.children.map((letter: string, index: number) => (
             <React.Fragment key={index}>
               <span>{letter}</span>
               <span className="mx-1"></span>
@@ -95,7 +95,7 @@ const HeroSection: React.FC = () => {
             ))}
             <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
             <span>
-              {renderAnimatedText("F u l l - S t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
+              {renderAnimatedText("F u l l - S t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index: number) => (
               <React.Fragment key={index}>
                 <span className="text-primary-600">{letter}</span>
                 <span className="mx-1"></span>
@@ -104,7 +104,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index: number) => (
               <React.Fragment key={index}>
                 <span className="text-primary-600">{letter}</span>
                 <span className="mx-1"></span>

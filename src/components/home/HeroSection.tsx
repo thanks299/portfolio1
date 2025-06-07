@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
         <div className="flex flex-col">
           <h2 className="mb-4">
             <span>
-            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter: string, index: number) => (
+            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
               <span className="mx-1"></span>
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter: string, index: number) => (
+            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
               <span className="mx-1"></span>
@@ -87,15 +87,10 @@ const HeroSection: React.FC = () => {
           variants={textVariants}
           className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
           >
-            {renderAnimatedText("A g b e b l e   T h a n k s .", "").props.children.map((letter: string, index: number) => (
-            <React.Fragment key={index}>
-              <span>{letter}</span>
-              <span className="mx-1"></span>
-            </React.Fragment>
-            ))}
-            <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
+          {renderAnimatedText("A g b e b l e   T h a n k s .", "")}
+          <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
             <span>
-              {renderAnimatedText("F u l l - S t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index: number) => (
+              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
               <React.Fragment key={index}>
                 <span className="text-primary-600">{letter}</span>
                 <span className="mx-1"></span>
@@ -104,7 +99,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index: number) => (
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
               <React.Fragment key={index}>
                 <span className="text-primary-600">{letter}</span>
                 <span className="mx-1"></span>
@@ -114,15 +109,15 @@ const HeroSection: React.FC = () => {
           </h1>
           </motion.h1>
 
-            <motion.p
-            custom={2}
-            initial="hidden"
-            animate="visible"
-            variants={textVariants}
-            className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
-            >
-            I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
-            </motion.p>
+          <motion.p
+          custom={2}
+          initial="hidden"
+          animate="visible"
+          variants={textVariants}
+          className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-xl"
+          >
+          I design and build exceptional digital experiences that help businesses connect with their customers and achieve their goals.
+          </motion.p>
 
           <motion.div
           custom={3}

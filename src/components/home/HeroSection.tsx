@@ -83,12 +83,12 @@ const HeroSection: React.FC = () => {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            className="text-3xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight"
+            className="text-2xl sm:text-2xl md:text-3xl font-bold mb-6 leading-tight"
             >
-            {renderAnimatedText("A g b e b l e   T h a n k s .", "text-black text-4xl sm:text-5xl md:text-6xl")}
+            {renderAnimatedText("A g b e b l e   T h a n k s .", "text-black text-3xl sm:text-4xl md:text-5xl")}
             <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
             <span>
-              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-xs sm:text-xs md:text-sm lg:text-base").props.children.map((letter, index) => (
+              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-xs sm:text-xs md:text-xs lg:text-xs").props.children.map((letter, index) => (
               <motion.span
               key={index}
               initial={{ y: 0 }}
@@ -104,7 +104,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-xs sm:text-xs md:text-sm lg:text-base").props.children.map((letter: string, index) => (
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-xs sm:text-xs md:text-xs lg:text-xs").props.children.map((letter: string, index) => (
               <motion.span
               key={index}
               initial={{ y: 0 }}

@@ -66,7 +66,6 @@ const HeroSection: React.FC = () => {
             {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
-              <span className="mx-1"></span>
               </React.Fragment>
             ))}
             </span>
@@ -75,7 +74,6 @@ const HeroSection: React.FC = () => {
             {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
               <React.Fragment key={index}>
               <span className="text-blue-600">{letter}</span>
-              <span className="mx-1"></span>
               </React.Fragment>
             ))}
             </span>
@@ -91,19 +89,31 @@ const HeroSection: React.FC = () => {
           <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
             <span>
               {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
-              <React.Fragment key={index}>
-                <span className="text-primary-600">{letter}</span>
-                <span className="mx-1"></span>
-              </React.Fragment>
+              <motion.span
+              key={index}
+              initial={{ y: 0 }}
+              whileHover={{ y: 5, scale: 1.3 }}
+              transition={{
+                duration: 0.2,
+              }}
+              className="inline-block text-primary-600"
+              >
+              {letter}
+              </motion.span>
               ))}
             </span>
             <span className="mx-1"></span>
             <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
-              <React.Fragment key={index}>
-                <span className="text-primary-600">{letter}</span>
-                <span className="mx-1"></span>
-              </React.Fragment>
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index) => (
+              <motion.span
+              key={index}
+              initial={{ y: 0 }}
+              whileHover={{ y: 5, scale: 1.3 }}
+              transition={{ duration: 0.2 }}
+              className="inline-block text-primary-600"
+              >
+              {letter}
+              </motion.span>
               ))}
             </span>
           </h1>

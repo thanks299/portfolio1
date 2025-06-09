@@ -78,23 +78,23 @@ const HeroSection: React.FC = () => {
             ))}
             </span>
           </h2>
-          <motion.h1
-          custom={1}
-          initial="hidden"
-          animate="visible"
-          variants={textVariants}
-          className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
-          >
-          {renderAnimatedText("A g b e b l e   T h a n k s .", "")}
-          <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
+            <motion.h1
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="text-3xl sm:text-3xl md:text-4xl font-bold mb-6 leading-tight"
+            >
+            {renderAnimatedText("A g b e b l e   T h a n k s .", "text-black text-4xl sm:text-5xl md:text-6xl")}
+            <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
             <span>
-              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter, index) => (
+              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-xs sm:text-sm md:text-base lg:text-lg").props.children.map((letter, index) => (
               <motion.span
               key={index}
               initial={{ y: 0 }}
               whileHover={{ y: 5, scale: 1.3 }}
               transition={{
-                duration: 0.2,
+              duration: 0.2,
               }}
               className="inline-block text-primary-600"
               >
@@ -104,7 +104,7 @@ const HeroSection: React.FC = () => {
             </span>
             <span className="mx-1"></span>
             <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-lg sm:text-xl md:text-2xl lg:text-3xl").props.children.map((letter: string, index) => (
+              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-xs sm:text-sm md:text-base lg:text-lg").props.children.map((letter: string, index) => (
               <motion.span
               key={index}
               initial={{ y: 0 }}
@@ -116,8 +116,8 @@ const HeroSection: React.FC = () => {
               </motion.span>
               ))}
             </span>
-          </h1>
-          </motion.h1>
+            </h1>
+            </motion.h1>
 
           <motion.p
           custom={2}

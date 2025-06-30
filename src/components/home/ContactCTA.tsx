@@ -25,16 +25,23 @@ const ContactCTA: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
+    console.log('Sending email with:', {
+      serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      userId: process.env.REACT_APP_EMAILJS_USER_ID,
+      formData,
+    });
+    
     try {
       await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID!, // Access Service ID from .env
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, // Access Template ID from .env
+        'service_8ckpg5u', // Access Service ID from .env
+        'template_if4zncc', // Access Template ID from .env
         {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
         },
-        process.env.REACT_APP_EMAILJS_USER_ID! // Access User ID (Public Key) from .env
+        'nq0KDLApA5IZVhmzq' // Access User ID (Public Key) from .env
       );
 
       setSubmitStatus('success');
@@ -153,7 +160,7 @@ const ContactCTA: React.FC = () => {
                       <Send className="ml-2 h-5 w-5" />
                     </>
                 )}
-              </button>
+                </button>
                 {submitStatus === 'success' && (
                   <p className="mt-4 text-green-600 dark:text-green-400 text-center">Message sent successfully!</p>
                 )}
@@ -168,5 +175,4 @@ const ContactCTA: React.FC = () => {
     </section>
   );
 };
-
 export default ContactCTA;

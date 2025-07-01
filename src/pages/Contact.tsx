@@ -221,6 +221,12 @@ const Contact: React.FC = () => {
                     </>
                   )}
                 </Button>
+                {submitStatus === 'success' && (
+                  <p className="mt-4 text-green-600 dark:text-green-400 text-center">Message sent successfully!</p>
+                )}
+                {submitStatus === 'error' && (
+                  <p className="mt-4 text-red-600 dark:text-red-400 text-center">Failed to send message. Please try again.</p>
+                )}
               </form>
             </motion.div>
           </div>

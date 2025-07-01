@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import emailjs from '@emailjs/browser'; // Ensure this package is installed: `npm install @emailjs/browser`
@@ -34,14 +34,14 @@ const ContactCTA: React.FC = () => {
     
     try {
       await emailjs.send(
-        'service_8ckpg5u', // Access Service ID from .env
-        'template_if4zncc', // Access Template ID from .env
+        process.env.REACT_APP_EMAILJS_SERVICE_ID!, // Access Service ID from .env
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, // Access Template ID from .env
         {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
         },
-        'nq0KDLApA5IZVhmzq' // Access User ID (Public Key) from .env
+        process.env.REACT_APP_EMAILJS_USER_ID! // Access User ID (Public Key) from .env
       );
 
       setSubmitStatus('success');
@@ -77,7 +77,7 @@ const ContactCTA: React.FC = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-primary-100 mb-8"
               >
-                Have a project in mind? Let's discuss how I can help you achieve your goals.
+                Have a project in mind? uh Let's discuss how I can help you achieve your goals.
               </motion.p>
             </div>
 
@@ -89,13 +89,13 @@ const ContactCTA: React.FC = () => {
                 transition={{ duration: 0.5 }}
                 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white"
               >
-                Get in touch
+                Get in touch!
               </motion.h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name
+                    my Name
                   </label>
                   <input
                     type="text"
@@ -175,4 +175,5 @@ const ContactCTA: React.FC = () => {
     </section>
   );
 };
+
 export default ContactCTA;

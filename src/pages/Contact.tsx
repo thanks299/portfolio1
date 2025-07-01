@@ -1,38 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
 import { MapPin, Mail, Phone, Send } from 'lucide-react';
 import Button from '../components/ui/Button';
 import SectionHeading from '../components/ui/SectionHeading';
-
-type FormData = {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-};
+import emailjs from 'emailjs-com';
 
 const Contact: React.FC = () => {
-  const { 
-    register, 
-    handleSubmit, 
-    formState: { errors, isSubmitting },
-    reset,
-  } = useForm<FormData>();
-  
-  const onSubmit = async (data: FormData) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    console.log('Sending email with:', {
+      serviceId: process.env.REACT_APP_EMAILJS_SERVICE_ID,
+      templateId: process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+      userId: process.env.REACT_APP_EMAILJS_USER_ID,
+      formData,
+    });
+
     try {
-      // In a real application, you would send the form data to a server
-      console.log('Form data:', data);
-      
-      // Simulate network request
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID!, // Access Service ID from .env
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, // Access Template ID from .env
+        {
+          from_name: formData.name,
+          reply_to: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        process.env.REACT_APP_EMAILJS_USER_ID! // Access User ID (Public Key) from .env
+      );
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
       alert('Message sent successfully!');
-      reset();
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Failed to send email:', error);
+      setSubmitStatus('error');
       alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -45,7 +69,7 @@ const Contact: React.FC = () => {
             center
           />
           <p className="text-center text-gray-600 dark:text-gray-400 mb-10">
-            Have a project in mind or want to discuss a potential collaboration? Feel free to reach out!"
+            Have a project in mind or want to discuss a potential collaboration? Feel free to reach out!
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
             <motion.div
@@ -54,20 +78,9 @@ const Contact: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Contact Information</h3>
-              
-              {/* Map Section */}
-              <div className="aspect-w-16 aspect-h-9 mb-8">
-                <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126083.42285880761!2d7.324718582455139!3d9.054396995694854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e745f4cd62fd9%3A0x53bd17b4a20ea12b!2sAbuja%2C%20Federal%20Capital%20Territory%2C%20Nigeria!5e0!3m2!1sen!2sus!4v1685201234567!5m2!1sen!2sus"
-                width="100%"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"></iframe>
-              </div>
-              
+              {/* Contact Information Section */}
               <div className="space-y-6 mb-8">
+                {/* Email */}
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-primary-600 mr-4 flex-shrink-0">
                     <Mail size={20} />
@@ -82,7 +95,7 @@ const Contact: React.FC = () => {
                     </a>
                   </div>
                 </div>
-                
+                {/* Phone */}
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-primary-600 mr-4 flex-shrink-0">
                     <Phone size={20} />
@@ -90,14 +103,14 @@ const Contact: React.FC = () => {
                   <div>
                     <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Phone</h4>
                     <a 
-                      href="tel:+234 8134490997" 
+                      href="tel:+2348134490997" 
                       className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-500 transition-colors duration-300"
                     >
                       +234 8134490997
                     </a>
                   </div>
                 </div>
-                
+                {/* Location */}
                 <div className="flex items-start">
                   <div className="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-primary-600 mr-4 flex-shrink-0">
                     <MapPin size={20} />
@@ -110,115 +123,99 @@ const Contact: React.FC = () => {
                     </p>
                   </div>
                 </div>
+                {/* Available Hours */}
+                <div className="flex items-start">
+                  <div className="w-12 h-12 rounded-full bg-primary-50 dark:bg-primary-900/20 flex items-center justify-center text-primary-600 mr-4 flex-shrink-0">
+                    <Send size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-1">Available Hours</h4>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Monday - Friday: 9:00 AM - 5:00 PM <br />
+                      Saturday: 10:00 AM - 3:00 PM
+                    </p>
+                  </div>
+                </div>
               </div>
-              
-              <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Availability</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                I'm currently available for freelance work and new projects. My typical response time is within 24 hours.
-              </p>
-              <p className="text-gray-600 dark:text-gray-400">
-                Working hours:<br />
-                Monday - Friday: 9:00 AM - 6:00 PM (WAT)<br />
-              </p>
+              {/* Google Map */}
+              <div className="overflow-hidden rounded-lg shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.710739217572!2d7.495082574999999!3d9.057850399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd9a3b5c5b5b5%3A0x5b5b5b5b5b5b5b5b!2sAbuja%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1697040000000!5m2!1sen!2sng"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </motion.div>
-            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <form onSubmit={handleSubmit(onSubmit)} className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-lg">
+              <form onSubmit={handleSubmit} className="bg-white dark:bg-dark-700 rounded-xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Send a Message</h3>
-                
                 <div className="mb-4">
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Your Name
                   </label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600 ${
-                      errors.name 
-                        ? 'border-red-500 focus:ring-red-200 dark:focus:ring-red-900' 
-                        : 'border-gray-300 focus:ring-primary-200 focus:border-primary-500 dark:focus:ring-primary-900 dark:focus:border-primary-500'
-                    }`}
-                    {...register('name', { required: 'Name is required' })}
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600"
                   />
-                  {errors.name && (
-                    <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-                  )}
                 </div>
-                
                 <div className="mb-4">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Your Email
                   </label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600 ${
-                      errors.email 
-                        ? 'border-red-500 focus:ring-red-200 dark:focus:ring-red-900' 
-                        : 'border-gray-300 focus:ring-primary-200 focus:border-primary-500 dark:focus:ring-primary-900 dark:focus:border-primary-500'
-                    }`}
-                    {...register('email', { 
-                      required: 'Email is required',
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Invalid email address',
-                      },
-                    })}
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600"
                   />
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-                  )}
                 </div>
-                
                 <div className="mb-4">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Subject
                   </label>
                   <input
                     id="subject"
+                    name="subject"
                     type="text"
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600 ${
-                      errors.subject 
-                        ? 'border-red-500 focus:ring-red-200 dark:focus:ring-red-900' 
-                        : 'border-gray-300 focus:ring-primary-200 focus:border-primary-500 dark:focus:ring-primary-900 dark:focus:border-primary-500'
-                    }`}
-                    {...register('subject', { required: 'Subject is required' })}
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600"
                   />
-                  {errors.subject && (
-                    <p className="mt-1 text-sm text-red-500">{errors.subject.message}</p>
-                  )}
                 </div>
-                
                 <div className="mb-6">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Your Message
                   </label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600 ${
-                      errors.message 
-                        ? 'border-red-500 focus:ring-red-200 dark:focus:ring-red-900' 
-                        : 'border-gray-300 focus:ring-primary-200 focus:border-primary-500 dark:focus:ring-primary-900 dark:focus:border-primary-500'
-                    }`}
-                    {...register('message', { required: 'Message is required' })}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:outline-none transition-colors duration-300 dark:bg-dark-800 dark:border-dark-600"
                   ></textarea>
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
-                  )}
                 </div>
-                
                 <Button 
                   type="submit" 
-                  className="w-full flex justify-center items-center "
+                  className="w-full flex justify-center items-center"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
-                    <>Processing...</>
+                    <>Sending...</>
                   ) : (
                     <>
                       Send Message

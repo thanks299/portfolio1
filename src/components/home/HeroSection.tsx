@@ -62,62 +62,62 @@ const HeroSection: React.FC = () => {
         <div className="lg:w-full mb-12 lg:mb-0 px-4 sm:px-8">
         <div className="flex flex-col">
           <h2 className="mb-4">
-            <span>
-            {renderAnimatedText("H e l l o ( );", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
-              <React.Fragment key={index}>
-              <span className="text-blue-600">{letter}</span>
-              </React.Fragment>
-            ))}
-            </span>
-            <span className="mx-1"></span>
-            <span>
-            {renderAnimatedText("I ' m", "text-2xl sm:text-3xl md:text-4xl font-medium text-blue-600 mb-4").props.children.map((letter, index) => (
-              <React.Fragment key={index}>
-              <span className="text-blue-600">{letter}</span>
-              </React.Fragment>
-            ))}
-            </span>
+        <span>
+        {renderAnimatedText("H e l l o ( );", `text-2xl sm:text-3xl md:text-4xl font-medium ${theme === 'dark' ? 'text-blue-300' : 'text-blue-600'} mb-4`).props.children.map((letter, index) => (
+          <React.Fragment key={index}>
+          <span className={`${theme === 'dark' ? 'text-blue-300' : 'text-blue-600'}`}>{letter}</span>
+          </React.Fragment>
+        ))}
+        </span>
+        <span className="mx-1"></span>
+        <span>
+        {renderAnimatedText("I ' m", `text-2xl sm:text-3xl md:text-4xl font-medium ${theme === 'dark' ? 'text-blue-300' : 'text-blue-600'} mb-4`).props.children.map((letter, index) => (
+          <React.Fragment key={index}>
+          <span className={`${theme === 'dark' ? 'text-blue-300' : 'text-blue-600'}`}>{letter}</span>
+          </React.Fragment>
+        ))}
+        </span>
           </h2>
-            <motion.h1
-            custom={1}
-            initial="hidden"
-            animate="visible"
-            variants={textVariants}
-            className="text-2xl sm:text-2xl md:text-3xl font-bold mb-6 leading-tight"
-            >
-            {renderAnimatedText("A g b e b l e   T h a n k s .", "text-black text-3xl sm:text-4xl md:text-5xl")}
-            <h1 className="text-gray-500 dark:text-gray-300 mt-2 flex flex-wrap">
-            <span>
-              {renderAnimatedText("F u l l - s t a c k", "text-primary-600 text-xs sm:text-xs md:text-xs lg:text-xs").props.children.map((letter, index) => (
-              <motion.span
-              key={index}
-              initial={{ y: 0 }}
-              whileHover={{ y: 5, scale: 1.3 }}
-              transition={{
-              duration: 0.2,
-              }}
-              className="inline-block text-primary-600"
-              >
-              {letter}
-              </motion.span>
-              ))}
-            </span>
-            <span className="mx-1"></span>
-            <span>
-              {renderAnimatedText("D e v e l o p e r", "text-primary-600 text-xs sm:text-xs md:text-xs lg:text-xs").props.children.map((letter: string, index) => (
-              <motion.span
-              key={index}
-              initial={{ y: 0 }}
-              whileHover={{ y: 5, scale: 1.3 }}
-              transition={{ duration: 0.2 }}
-              className="inline-block text-primary-600"
-              >
-              {letter}
-              </motion.span>
-              ))}
-            </span>
-            </h1>
-            </motion.h1>
+        <motion.h1
+        custom={1}
+        initial="hidden"
+        animate="visible"
+        variants={textVariants}
+        className={`text-2xl sm:text-2xl md:text-3xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+        >
+        {renderAnimatedText("A g b e b l e   T h a n k s .", `${theme === 'dark' ? 'text-white' : 'text-black'} text-3xl sm:text-4xl md:text-5xl`)}
+        <h1 className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'} mt-2 flex flex-wrap`}>
+        <span>
+          {renderAnimatedText("F u l l - s t a c k", `${theme === 'dark' ? 'text-primary-300' : 'text-primary-600'} text-xs sm:text-xs md:text-xs lg:text-xs`).props.children.map((letter, index) => (
+          <motion.span
+          key={index}
+          initial={{ y: 0 }}
+          whileHover={{ y: 5, scale: 1.3 }}
+          transition={{
+          duration: 0.2,
+          }}
+          className={`inline-block ${theme === 'dark' ? 'text-primary-300' : 'text-primary-600'}`}
+          >
+          {letter}
+          </motion.span>
+          ))}
+        </span>
+        <span className="mx-1"></span>
+        <span>
+          {renderAnimatedText("D e v e l o p e r", `${theme === 'dark' ? 'text-primary-300' : 'text-primary-600'} text-xs sm:text-xs md:text-xs lg:text-xs`).props.children.map((letter: string, index) => (
+          <motion.span
+          key={index}
+          initial={{ y: 0 }}
+          whileHover={{ y: 5, scale: 1.3 }}
+          transition={{ duration: 0.2 }}
+          className={`inline-block ${theme === 'dark' ? 'text-primary-300' : 'text-primary-600'}`}
+          >
+          {letter}
+          </motion.span>
+          ))}
+        </span>
+        </h1>
+        </motion.h1>
 
           <motion.p
           custom={2}

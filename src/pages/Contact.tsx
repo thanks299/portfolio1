@@ -50,11 +50,9 @@ const Contact: React.FC = () => {
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      alert('Message sent successfully!');
     } catch (error) {
       console.error('Failed to send email:', error);
       setSubmitStatus('error');
-      alert('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

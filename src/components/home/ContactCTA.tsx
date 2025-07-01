@@ -34,14 +34,14 @@ const ContactCTA: React.FC = () => {
     
     try {
       await emailjs.send(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID!, // Access Service ID from .env
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!, // Access Template ID from .env
+        'service_8ckpg5u', // Access Service ID from .env
+        'template_if4zncc', // Access Template ID from .env
         {
           from_name: formData.name,
           reply_to: formData.email,
           message: formData.message,
         },
-        process.env.REACT_APP_EMAILJS_USER_ID! // Access User ID (Public Key) from .env
+        'nq0KDLApA5IZVhmzq' // Access User ID (Public Key) from .env
       );
 
       setSubmitStatus('success');
